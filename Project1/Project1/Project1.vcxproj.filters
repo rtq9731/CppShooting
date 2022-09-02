@@ -13,5 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="BaseFrameWork">
+      <UniqueIdentifier>{b18e7487-fcc8-4ead-a8ad-e936e34b131d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{08536c98-58e2-4efd-82b7-4126e1d7f315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{d22da2cf-93ea-479a-9dac-865b57f3b46a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BBasicStd.h">
+      <Filter>BaseFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="BWindow.h">
+      <Filter>BaseFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="BEngine.h">
+      <Filter>BaseFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="BBasicSys.h">
+      <Filter>BaseFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="MainApp.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="BImage.h">
+      <Filter>BaseFrameWork</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BWindow.cpp">
+      <Filter>BaseFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="BEngine.cpp">
+      <Filter>BaseFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="MainApp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="BImage.cpp">
+      <Filter>BaseFrameWork</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

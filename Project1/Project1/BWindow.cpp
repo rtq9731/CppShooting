@@ -2,17 +2,17 @@
 
 BWindow::BWindow() :m_hWnd(nullptr), m_hInstance(nullptr)
 {
-	// Do Not
+	//do nothing
 }
 
 BWindow::~BWindow()
 {
-	// DO Not
+	//do nothing
 }
 
+//윈도우를 띄워주고, 셋팅한다음에 무한루프로 들어가는 역할을 해주는 함수
 int BWindow::Run(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-	// Start
 	m_hInstance = hInstance;
 	this->RegisterWndClass();
 	this->WindowCreate();
@@ -28,24 +28,22 @@ LRESULT BWindow::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
-	default:
-		break;
 	}
-	return DefWindowProc(hwnd, message, wParam, lParam);
+	return DefWindowProcW(hwnd, message, wParam, lParam);
 }
 
 void BWindow::RegisterWndClass()
 {
 	WNDCLASSEX winClassEx;
-	winClassEx.cbSize = sizeof(LPWNDCLASSEX);
+	winClassEx.cbSize = sizeof(WNDCLASSEX);
 	winClassEx.style = CS_HREDRAW | CS_VREDRAW;
-	winClassEx.lpfnWndProc = BWindow::WndProc;
+	winClassEx.lpfnWndProc = BWindow::WndProc; //메시지 핸들 프로시저 등록
 	winClassEx.cbClsExtra = 0;
 	winClassEx.cbWndExtra = 0;
 	winClassEx.hInstance = m_hInstance;
 	winClassEx.hIcon = LoadIcon(m_hInstance, IDI_APPLICATION);
 	winClassEx.hCursor = LoadCursor(nullptr, IDC_ARROW);
-	winClassEx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	winClassEx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); //이게 아마 회색일꺼야
 	winClassEx.lpszMenuName = nullptr;
 	winClassEx.lpszClassName = BASIC_WINDOW_NAME;
 	winClassEx.hIconSm = LoadIcon(m_hInstance, IDI_APPLICATION);
@@ -55,8 +53,11 @@ void BWindow::RegisterWndClass()
 
 void BWindow::WindowCreate()
 {
-	// 클래스 이름, 윈도우 이름, 스타일, x, y, w, h, 부모, 메뉴, 인스턴스, LParam
-	m_hWnd = CreateWindow(BASIC_WINDOW_NAME, _T("Framework"), WS_OVERLAPPEDWINDOW, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, nullptr, nullptr, m_hInstance, nullptr);
+	//클래스 이름, 윈도우 이름, 스타일, x, y, w, h, 부모, 메뉴, 인스턴스, lparam
+	m_hWnd = CreateWindow(
+		BASIC_WINDOW_NAME, _T("FrameWork"), WS_OVERLAPPEDWINDOW,
+		0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, nullptr, nullptr, m_hInstance, nullptr);
+
 }
 
 void BWindow::WindowShow(int nCmdShow)
@@ -67,9 +68,9 @@ void BWindow::WindowShow(int nCmdShow)
 int BWindow::MessageLoop()
 {
 	MSG msg;
-	memset(&msg, 0, sizeof(msg)); 
+	memset(&msg, 0, sizeof(msg)); //전부 0으로 클린하게 만들고
 
-	this->StartUp(); // 추상 메서드
+	this->StartUp(); //추상매서드 : 자식이 구현할꺼임
 
 	while (msg.message != WM_QUIT)
 	{
@@ -78,14 +79,13 @@ int BWindow::MessageLoop()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		else
-		{
-			this->MainLoop(); // 따로 메세지 없으면 메인루프
+		else {
+			this->MainLoop(); //윈도우 메시지가 없을 경우 메인루프 돌기
 		}
 	}
 
-	this->CleanUp(); // 추상 메서드
-	return (int)msg.wParam;
+	this->CleanUp(); //추상매서드: 자식이 구현해서 자기가 만들걸 치울꺼임
+	return (int)msg.wParam; //종료코드를 리턴해주면 된다.
 }
 
 HWND BWindow::GetWindowHandle()
